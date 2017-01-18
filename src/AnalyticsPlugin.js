@@ -4,11 +4,17 @@ import pluginConfig from './config'
  * Plugin main class
  */
 export default class AnalyticsPlugin {
-  trackView (screenName) {
-    logDebug('Dispatching TrackView', { screenName })
+  trackPageView (pageName) {
+    logDebug('Dispatching PageView', { pageName })
 
-    ga('set', 'screenName', screenName)
-    ga('send', 'screenview')
+    ga('set', 'page', pageName)
+    ga('send', 'pageview')
+  }
+
+  trackView (screenName) {
+    logDebug('Dispatching ScreenView', { screenName })
+
+    ga('send', 'screenview', {screenName: screenName})
   }
 
   /**
