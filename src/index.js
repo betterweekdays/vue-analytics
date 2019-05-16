@@ -38,6 +38,10 @@ const install = function (Vue, initConf = {}) {
     appVersion: initConf.appVersion
   })
 
+  if (initConf.optimizeId) {
+    ga('require', initConf.optimizeId)
+  }
+
   // Inject global dimensions
   if (initConf.globalDimensions) {
     initConf.globalDimensions.forEach(dimension => {
