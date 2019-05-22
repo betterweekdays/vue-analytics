@@ -32,11 +32,10 @@ const install = function (Vue, initConf = {}) {
   pluginConfig.globalMetrics = initConf.globalMetrics
 
   // Register tracker
-  ga('create', initConf.trackingId, 'auto', {
-    transport: 'beacon',
-    appName: initConf.appName,
-    appVersion: initConf.appVersion
-  })
+  ga('create', initConf.trackingId, 'auto')
+  ga('set', 'transport', 'beacon')
+  ga('set', 'appName', initConf.appName)
+  ga('set', 'appVersion', initConf.appVersion)
 
   if (initConf.optimizeId) {
     ga('require', initConf.optimizeId)
@@ -87,7 +86,7 @@ const initVueRouterGuard = function (Vue, vueRouter, ignoredViews) {
     }
 
     // Dispatch vue event using meta analytics value if defined otherwise fallback to route name
-    Vue.analytics.trackView(to.meta.analytics || to.name)
+    Vue.analytics.trackPageView(to.meta.analytics || to.path)
   })
 
   return ignoredViews;
